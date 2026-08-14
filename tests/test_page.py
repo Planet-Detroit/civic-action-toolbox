@@ -63,8 +63,14 @@ check(
     and 'class="eyebrow eyebrow-on-cobalt"' in html_src,
 )
 
-# Launch messaging per the design handoff.
-check('Says "Coming Fall 2026"', "Coming Fall 2026" in html_src)
+# Launch messaging matches the Google Form's "early 2027" (Nina's call,
+# 2026-08-14 — the design handoff's "Fall 2026" was inconsistent with the form).
+check(
+    'Says early 2027, no fall/2026 launch copy',
+    "Coming Early 2027" in html_src
+    and "Fall 2026" not in html_src
+    and "this fall" not in html_src,
+)
 
 # Product is named "Civic Action Toolbox" — never "Builder".
 check(

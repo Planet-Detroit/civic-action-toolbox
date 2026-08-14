@@ -43,7 +43,7 @@ A single-page marketing splash at **civicactiontoolbox.org** whose one job is ge
 
 ## Known risks / open items
 
-- **Copy conflict:** page says "Coming Fall 2026" (per approved design) but the Google Form description still says "beta testing in early 2027", and civiclab.planetdetroit.org also says early 2027. One of them is wrong — Nina to decide which date is real; form/civiclab copy may need updating.
+- **Launch date:** resolved 2026-08-14 — Nina chose consistency with the Google Form: "Coming Early 2027" (the design handoff's "Fall 2026" was dropped). Page, form, and civiclab now all say early 2027.
 - **hello@civicactiontoolbox.org** appears on the page but the mailbox/forwarding must be set up at the domain/email provider or mail to it bounces.
 - Domain shows the page only after DNS is pointed (GoDaddy or Kinsta DNS; records in README).
 
