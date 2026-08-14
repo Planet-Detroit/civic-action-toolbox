@@ -1,14 +1,14 @@
 # Civic Action Toolbox — Splash Page
 
-One-screen splash site for **civicactiontoolbox.org**: what the Civic Action Toolbox is, an example action box, and a button to the beta waitlist Google Form. See `spec.md` for the full spec.
+Splash site for **civicactiontoolbox.org**: five full-bleed sections (hero, product mock, how it works, stats, who's behind it) driving to the early-access Google Form. Implements the Claude Design handoff of 2026-08-14 — see `spec.md` for details.
 
 ## Tech
 
-- Static HTML + CSS, no build step (same pattern as civic-action-lab)
+- Static HTML + CSS + a small script that scales the product mock, no build step
 - Hosted on **GitHub Pages** from `Planet-Detroit/civic-action-toolbox`
 - Custom domain via `CNAME` file
-- Colors/type follow the Planet Detroit design system (`~/projects/design-system`)
-- GA4 tracking shares the Civic Action Lab property (`G-5QQJ9SVV07`) — filter by hostname `civicactiontoolbox.org` in GA reports; the waitlist button logs a `waitlist_click` event with `link_location: splash`
+- **Toolbox brand** (cobalt/red/yellow/cream, Baloo 2 + DM Sans via Google Fonts) — deliberately distinct from the Planet Detroit design system; brand marks live in `assets/`
+- GA4 tracking shares the Civic Action Lab property (`G-5QQJ9SVV07`) — filter by hostname `civicactiontoolbox.org` in GA reports; both CTAs log a `waitlist_click` event with their location (hero or closing card)
 
 ## Signup form
 

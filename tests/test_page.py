@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Checks the civicactiontoolbox.org splash page against its spec (spec.md).
+"""Checks the civicactiontoolbox.org splash page against its spec (spec.md),
+which implements the Claude Design handoff of 2026-08-14.
 
 Run with:  python3 tests/test_page.py
 """
@@ -28,15 +29,17 @@ def check(name, condition, detail=""):
 html_src = (ROOT / "index.html").read_text()
 css_src = (ROOT / "styles.css").read_text()
 
-# The signup button opens the beta waitlist Google Form in a new tab.
-btn = re.search(r'<a[^>]+href="' + re.escape(GFORM_URL) + r'"[^>]*>', html_src)
+# Two CTAs (hero + closing card) open the early-access Google Form in a new
+# tab, and both carry waitlist-cta so GA logs them.
+btns = re.findall(r'<a[^>]+href="' + re.escape(GFORM_URL) + r'"[^>]*>', html_src)
 check(
-    "Waitlist button links to the Google Form",
-    btn is not None
-    and "waitlist-cta" in btn.group(0)
-    and 'target="_blank"' in btn.group(0)
-    and 'rel="noopener"' in btn.group(0),
-    f"found: {btn.group(0) if btn else 'none'}",
+    "Two CTAs link to the Google Form",
+    len(btns) == 2
+    and all(
+        "waitlist-cta" in b and 'target="_blank"' in b and 'rel="noopener"' in b
+        for b in btns
+    ),
+    f"found {len(btns)}",
 )
 
 # GitHub Pages serves the custom domain from this file — exact content matters.
@@ -45,12 +48,23 @@ check(
     (ROOT / "CNAME").read_text().strip() == "civicactiontoolbox.org",
 )
 
-# Design-system blue only (see ~/projects/design-system/colors/palette.html).
+# Toolbox brand tokens (cobalt/yellow/cream), not Planet Detroit's blue —
+# the product has its own brand per the design handoff.
 check(
-    "Brand blue #2982C4 used, off-brand blue absent",
-    ("2982C4" in css_src.upper() or "41, 130, 196" in css_src)
-    and "45, 128, 195" not in css_src + html_src,
+    "Toolbox brand colors used, PD blue absent",
+    all(c in css_src for c in ("#1B2FC4", "#FFD028", "#FFF3DC", "#C42D18"))
+    and "2982C4" not in css_src.upper(),
 )
+
+# Handoff pairing rule: eyebrows on cobalt are periwinkle, never red.
+check(
+    "Cobalt-section eyebrow is periwinkle",
+    ".eyebrow-on-cobalt { color: #A0A1D2; }" in css_src
+    and 'class="eyebrow eyebrow-on-cobalt"' in html_src,
+)
+
+# Launch messaging per the design handoff.
+check('Says "Coming Fall 2026"', "Coming Fall 2026" in html_src)
 
 # Product is named "Civic Action Toolbox" — never "Builder".
 check(
@@ -58,11 +72,23 @@ check(
     "Civic Action Toolbox" in html_src and "Builder" not in html_src,
 )
 
-# Cross-links to the Lab and Planet Detroit.
+# Every referenced local asset exists on disk (broken image = broken page).
+assets = re.findall(r'(?:src|href)="(assets/[^"]+)"', html_src)
+missing = [a for a in set(assets) if not (ROOT / a).is_file()]
+check("All referenced assets exist", assets and not missing, f"missing: {missing}")
+
+# The product mock scales via the fixed-width transform (704px design width);
+# without this script the mock overflows on small screens.
 check(
-    "Links to civiclab and planetdetroit.org",
-    "civiclab.planetdetroit.org" in html_src
-    and 'href="https://planetdetroit.org' in html_src,
+    "Mock scale script present",
+    "clientWidth / 704" in html_src and "transform-origin: top left" in css_src,
+)
+
+# The decorative mock must be hidden from screen readers, with a label on the
+# wrapper instead.
+check(
+    "Mock is aria-hidden with labelled wrapper",
+    'aria-hidden="true"' in html_src and 'aria-label="A civic action box' in html_src,
 )
 
 
@@ -72,18 +98,18 @@ class TagBalance(HTMLParser):
         self.counts = {}
 
     def handle_starttag(self, tag, attrs):
-        if tag in ("div", "section", "a", "p"):
+        if tag in ("div", "section", "a", "p", "span"):
             self.counts[tag] = self.counts.get(tag, 0) + 1
 
     def handle_endtag(self, tag):
-        if tag in ("div", "section", "a", "p"):
+        if tag in ("div", "section", "a", "p", "span"):
             self.counts[tag] = self.counts.get(tag, 0) - 1
 
 
 parser = TagBalance()
 parser.feed(html_src)
 unbalanced = {t: n for t, n in parser.counts.items() if n != 0}
-check("div/section/a/p tags balanced", not unbalanced, str(unbalanced))
+check("div/section/a/p/span tags balanced", not unbalanced, str(unbalanced))
 
 print()
 if failures:

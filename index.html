@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Civic Action Toolbox</title>
-<meta name="description" content="Turn any story into a civic action box — one deadline, one action, and a count of what your readers did. Free beta for community newsrooms opens in early 2027.">
+<meta name="description" content="A free tool that puts who decides, when, and how to reach them inside your story — and counts every action readers take. Pilot group of newsrooms opening this fall.">
 <meta property="og:title" content="Civic Action Toolbox">
-<meta property="og:description" content="Turn any story into a civic action box — one deadline, one action, and a count of what your readers did.">
+<meta property="og:description" content="Readers don't lack outrage. They lack the phone number. A free tool for newsrooms — coming Fall 2026.">
 <meta property="og:type" content="website">
-<link rel="icon" href="https://planetdetroit.org/wp-content/uploads/2025/08/cropped-globe-1.png">
+<link rel="icon" href="assets/cat-icon-favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
 <!-- Google Analytics 4 (shared property with civiclab; filter by hostname in reports) -->
@@ -23,41 +26,213 @@
     var link = e.target.closest('a');
     if (!link) return;
     if (link.classList.contains('waitlist-cta')) {
-      gtag('event', 'waitlist_click', { link_text: 'Join the beta waitlist', link_location: 'splash', link_url: link.href });
-    } else if (link.classList.contains('footer-link')) {
-      gtag('event', 'cta_click', { link_text: link.textContent, link_url: link.href });
+      gtag('event', 'waitlist_click', {
+        link_text: 'Join the early access list',
+        link_location: link.closest('.hero') ? 'hero' : 'closing card',
+        link_url: link.href
+      });
     }
   });
 </script>
 </head>
 <body>
 
-<main class="splash">
-  <div class="splash-content">
-    <div class="eyebrow">From the PD Civic Action Lab</div>
-    <h1>Civic Action Toolbox</h1>
-    <p class="tagline">Turn any story into a civic action box — <em>one deadline, one action, and a count of what your readers did.</em></p>
-
-    <div class="action-box">
-      <div class="action-box-label">Example</div>
-      <div class="action-box-headline">City proposes 9% water rate increase</div>
-      <div class="action-box-row"><strong>📅 The deadline</strong> Public comments close Friday, March 6</div>
-      <div class="action-box-row"><strong>✍️ The action</strong> Submit a comment to the Board of Water Commissioners — link and instructions included</div>
-      <div class="action-box-row action-box-count"><strong>📈 The count</strong> 214 readers took action on this story</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="inner">
+    <div class="topbar">
+      <div class="lockup">
+        <img src="assets/cat-icon-reverse-cream.svg" alt="" class="lockup-icon">
+        <div class="lockup-word">
+          <div class="word-civic">Civic Action</div>
+          <div class="word-toolbox">Toolbox</div>
+        </div>
+      </div>
+      <span class="coming">Coming Fall 2026</span>
     </div>
-
-    <p class="beta-note">The free version opens for beta testing with community newsrooms in early 2027.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-waitlist waitlist-cta" target="_blank" rel="noopener">Join the beta waitlist</a>
-    <p class="form-note">Opens a short form — takes about two minutes.</p>
+    <div class="accent-rule"></div>
+    <h1>Readers don't lack outrage. They lack the phone number.</h1>
+    <p class="hero-body">A free tool that puts who decides, when, and how to reach them inside your story — and counts every action readers take. We're opening a pilot group of newsrooms this fall.</p>
+    <div class="cta-row">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-pill waitlist-cta" target="_blank" rel="noopener">Join the early access list</a>
+      <span class="cta-note">Two minutes. No commitment.</span>
+    </div>
   </div>
+</section>
 
-  <footer>
-    <a href="https://civiclab.planetdetroit.org/" class="footer-link">PD Civic Action Lab</a>
-    <span class="footer-sep">·</span>
-    <a href="https://planetdetroit.org/" class="footer-link">Planet Detroit</a>
-    <div class="copyright">&copy; 2026 Planet Detroit</div>
-  </footer>
-</main>
+<!-- THE PRODUCT -->
+<section class="product">
+  <div class="inner product-cols">
+    <div class="product-copy">
+      <div class="eyebrow">The product</div>
+      <h2>Every story ends in something you can do.</h2>
+      <p class="section-body">The action box sits beside the reporting: who decides, when they meet, how to reach them — and a place for readers to say what they did.</p>
+    </div>
+    <div class="mock-box" id="mockBox" role="img" aria-label="A civic action box embedded alongside a news story about water shutoffs">
+      <div class="mock" id="mockInner" aria-hidden="true">
+        <div class="mock-chrome">
+          <div class="mock-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-cobalt"></span>
+          </div>
+          <div class="mock-url">yourlocalnewsroom.org/water-shutoffs-hearing</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-article">
+            <div class="mock-kicker">ENVIRONMENT</div>
+            <h4 class="mock-headline">Residents pushed back on water shutoffs across the city.</h4>
+            <div class="mock-lines">
+              <span></span>
+              <span></span>
+              <span style="width:78%"></span>
+              <span style="width:88%"></span>
+              <span style="width:44%" class="para-end"></span>
+              <span></span>
+              <span></span>
+              <span style="width:66%"></span>
+              <span></span>
+              <span style="width:38%" class="para-end"></span>
+              <span></span>
+              <span style="width:82%"></span>
+              <span></span>
+              <span style="width:56%"></span>
+            </div>
+          </div>
+          <div>
+            <div class="mock-tag">The action box</div>
+            <div class="mock-card">
+              <div class="mock-lockup">
+                <img src="assets/cat-icon-reverse-cream.svg" alt="">
+                <span class="mock-lockup-word">Civic Action <span class="word-toolbox">Toolbox</span></span>
+              </div>
+              <div class="mock-title">How to engage</div>
+              <div class="mock-label">WHY IT MATTERS</div>
+              <p>Shutoff rules are set locally, and they can change before the next billing cycle.</p>
+              <div class="mock-label">WHO IS MAKING PUBLIC DECISIONS</div>
+              <p>City Council · Water and Sewerage Department</p>
+              <div class="mock-label mb4">UPCOMING MEETINGS</div>
+              <div class="mock-meetings">
+                <div class="mock-meeting">
+                  <div><div class="meeting-date">Sept 9, 6:00 p.m.</div><div class="meeting-name">Council public comment</div></div>
+                  <span class="mock-link-cobalt">Add to calendar</span>
+                </div>
+                <div class="mock-meeting">
+                  <div><div class="meeting-date">Sept 23, 5:30 p.m.</div><div class="meeting-name">Water board briefing</div></div>
+                  <span class="mock-link-cobalt">Add to calendar</span>
+                </div>
+              </div>
+              <div class="mock-label">CONTACT YOUR REPRESENTATIVES</div>
+              <p class="tight">A. Mendez (D) · Council District 4 · <span class="mock-link-yellow">email</span></p>
+              <p>R. Okafor (D) · Council At-Large · <span class="mock-link-yellow">email</span></p>
+              <div class="mock-label mb4">CIVIC ACTIONS</div>
+              <div class="mock-actions">
+                <div class="mock-action"><span class="action-chip">1</span><span class="mock-link-white">Attend the Sept 9 meeting</span></div>
+                <div class="mock-action"><span class="action-chip">2</span><span class="mock-link-white">Register to vote</span></div>
+                <div class="mock-action"><span class="action-chip">3</span><span class="mock-link-white">Submit written comment</span></div>
+              </div>
+              <div class="mock-label">ORGANIZATIONS WORKING ON THIS ISSUE</div>
+              <p>We the People of Detroit · Michigan Welfare Rights Organization</p>
+              <div class="mock-label">WHAT TO WATCH FOR NEXT</div>
+              <p class="watch-next">A revised shutoff schedule is expected after the September briefing.</p>
+              <div class="mock-form">
+                <div class="mock-form-title">Tell us how you're taking civic action</div>
+                <div class="mock-field field-tall">I called about the shutoff schedule…</div>
+                <div class="mock-field">you@email.com</div>
+                <span class="mock-submit">Submit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="inner">
+    <div class="eyebrow">How it works</div>
+    <h2 class="how-h2">Three steps, ten minutes, every story.</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="number-chip">01</span>
+        <h3>Paste your story</h3>
+        <p>Drop in the article. The toolbox finds the decision-maker, the deadline and the ask buried in your reporting.</p>
+      </div>
+      <div class="how-card">
+        <span class="number-chip">02</span>
+        <h3>Edit and embed</h3>
+        <p>You approve the words. A simple embed drops the action box into the story, styled to sit with your reporting.</p>
+      </div>
+      <div class="how-card">
+        <span class="number-chip">03</span>
+        <h3>Count what happens</h3>
+        <p>Every call, comment and public-meeting RSVP is counted — story by story, in a dashboard you can show funders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="inner stats-grid">
+    <div>
+      <div class="stat-numeral">$0</div>
+      <p class="stat-caption">Free for newsrooms, at any size.</p>
+    </div>
+    <div>
+      <div class="stat-numeral">10<span class="stat-unit">min</span></div>
+      <p class="stat-caption">From paste to published action box.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO'S BEHIND IT -->
+<section class="who">
+  <div class="inner who-grid">
+    <div>
+      <div class="eyebrow eyebrow-on-cobalt">Who's behind it</div>
+      <h2 class="who-h2">Built by a newsroom, for newsrooms.</h2>
+      <p class="who-body">Civic Action Toolbox comes from the team at Planet Detroit, who spent years watching readers finish a story angry and with nowhere to put it. The project is supported by a Reynolds Journalism Institute fellowship.</p>
+      <p class="who-body">Questions? <a href="mailto:hello@civicactiontoolbox.org" class="who-email">hello@civicactiontoolbox.org</a></p>
+    </div>
+    <div class="pilot-card">
+      <h3>Want in on the pilot?</h3>
+      <p>Tell us about your newsroom and we'll get you early access when the toolbox opens this fall.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-pill waitlist-cta" target="_blank" rel="noopener">Join the early access list</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner footer-row">
+    <img src="assets/cat-icon-reverse-cream.svg" alt="Civic Action Toolbox" class="footer-icon">
+    <span class="footer-domain">civicactiontoolbox.org</span>
+  </div>
+</footer>
+
+<script>
+  // The product mock is authored at a fixed 704px width and scaled to fit its
+  // column — reflowing it fluidly wraps dates and headlines mid-phrase.
+  (function () {
+    var box = document.getElementById('mockBox');
+    var inner = document.getElementById('mockInner');
+    function fit() {
+      var s = Math.min(1, box.clientWidth / 704);
+      inner.style.transform = 'scale(' + s + ')';
+      box.style.height = (inner.offsetHeight * s) + 'px';
+    }
+    fit();
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(fit);
+      ro.observe(box);
+      ro.observe(inner);
+    }
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  })();
+</script>
 
 </body>
 </html>
