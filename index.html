@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civic Action Toolbox</title>
+<meta name="description" content="Turn any story into a civic action box — one deadline, one action, and a count of what your readers did. Free beta for community newsrooms opens in early 2027.">
+<meta property="og:title" content="Civic Action Toolbox">
+<meta property="og:description" content="Turn any story into a civic action box — one deadline, one action, and a count of what your readers did.">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://planetdetroit.org/wp-content/uploads/2025/08/cropped-globe-1.png">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Google Analytics 4 (shared property with civiclab; filter by hostname in reports) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQJ9SVV07"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5QQJ9SVV07');
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    if (link.classList.contains('waitlist-cta')) {
+      gtag('event', 'waitlist_click', { link_text: 'Join the beta waitlist', link_location: 'splash', link_url: link.href });
+    } else if (link.classList.contains('footer-link')) {
+      gtag('event', 'cta_click', { link_text: link.textContent, link_url: link.href });
+    }
+  });
+</script>
+</head>
+<body>
+
+<main class="splash">
+  <div class="splash-content">
+    <div class="eyebrow">From the PD Civic Action Lab</div>
+    <h1>Civic Action Toolbox</h1>
+    <p class="tagline">Turn any story into a civic action box — <em>one deadline, one action, and a count of what your readers did.</em></p>
+
+    <div class="action-box">
+      <div class="action-box-label">Example</div>
+      <div class="action-box-headline">City proposes 9% water rate increase</div>
+      <div class="action-box-row"><strong>📅 The deadline</strong> Public comments close Friday, March 6</div>
+      <div class="action-box-row"><strong>✍️ The action</strong> Submit a comment to the Board of Water Commissioners — link and instructions included</div>
+      <div class="action-box-row action-box-count"><strong>📈 The count</strong> 214 readers took action on this story</div>
+    </div>
+
+    <p class="beta-note">The free version opens for beta testing with community newsrooms in early 2027.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-waitlist waitlist-cta" target="_blank" rel="noopener">Join the beta waitlist</a>
+    <p class="form-note">Opens a short form — takes about two minutes.</p>
+  </div>
+
+  <footer>
+    <a href="https://civiclab.planetdetroit.org/" class="footer-link">PD Civic Action Lab</a>
+    <span class="footer-sep">·</span>
+    <a href="https://planetdetroit.org/" class="footer-link">Planet Detroit</a>
+    <div class="copyright">&copy; 2026 Planet Detroit</div>
+  </footer>
+</main>
+
+</body>
+</html>

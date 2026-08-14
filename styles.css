@@ -1,0 +1,55 @@
+/* Civic Action Toolbox splash — colors, type, and button rules follow the
+   Planet Detroit design system (~/projects/design-system). Blue #2982C4 for
+   signup CTAs; orange is reserved for donation asks and not used here. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: Georgia, "Times New Roman", serif; background: #333333; color: #ffffff; }
+
+.splash { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px 0; text-align: center; }
+
+.splash-content { max-width: 640px; }
+
+.eyebrow { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #2982C4; margin-bottom: 20px; }
+
+h1 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; }
+
+.tagline { font-size: 20px; line-height: 1.6; color: #d7e2ee; margin-bottom: 36px; }
+
+.tagline em { color: #ffffff; }
+
+/* Example action box — a compact mock of the product's output */
+.action-box { background: #ffffff; border-radius: 8px; padding: 24px 28px; text-align: left; margin-bottom: 36px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35); }
+
+.action-box-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999999; margin-bottom: 10px; }
+
+.action-box-headline { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 14px; line-height: 1.35; }
+
+.action-box-row { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 14px; color: #515151; line-height: 1.5; padding: 8px 0; border-top: 1px solid #F0F0F0; }
+
+.action-box-row strong { display: block; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #2982C4; margin-bottom: 2px; }
+
+.action-box-count { color: #111111; font-weight: 600; }
+
+.beta-note { font-size: 17px; line-height: 1.6; color: #d7e2ee; margin-bottom: 28px; }
+
+.btn-waitlist { display: inline-block; background: #2982C4; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; padding: 16px 40px; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+
+.btn-waitlist:hover { background: #216AA0; }
+
+.form-note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 13px; color: #999999; margin-top: 14px; }
+
+footer { margin-top: 64px; padding: 28px 24px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 13px; }
+
+.footer-link { color: #d7e2ee; text-decoration: none; font-weight: 600; }
+
+.footer-link:hover { color: #ffffff; text-decoration: underline; }
+
+.footer-sep { color: #777777; margin: 0 10px; }
+
+.copyright { color: #999999; font-size: 12px; margin-top: 12px; }
+
+@media (max-width: 480px) {
+  .splash { padding-top: 40px; }
+  .action-box { padding: 20px; }
+}
