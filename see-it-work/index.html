@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>See it work — Civic Action Toolbox</title>
+<meta name="description" content="One real Planet Detroit story and the civic action box the Toolbox built for it: who decides, when, how to reach them, and what readers can do. No sign-in.">
+<meta property="og:title" content="See the Civic Action Toolbox work">
+<meta property="og:description" content="A real story, and the real box the tool built for it.">
+<link rel="icon" href="../assets/cat-icon-favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<!-- Google Analytics 4 (shared property with civiclab; filter by hostname in reports) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQJ9SVV07"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5QQJ9SVV07');
+
+  // Measure first (Oct 17 2026 decision): the funnel is "See it work" on
+  // the home page → this page → the early-access form. Sign-ins are counted
+  // inside the app itself.
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    if (link.classList.contains('waitlist-cta')) {
+      gtag('event', 'demo_waitlist_click', { link_text: 'Join the early access list', link_url: link.href });
+    }
+    if (link.classList.contains('demo-story-link')) {
+      gtag('event', 'demo_story_click', { link_url: link.href });
+    }
+  });
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<section class="hero demo-hero">
+  <div class="inner">
+    <div class="topbar">
+      <a href="../" class="lockup lockup-link" aria-label="Civic Action Toolbox home">
+        <img src="../assets/cat-icon-reverse-cream.svg" alt="" class="lockup-icon">
+        <div class="lockup-word">
+          <div class="word-civic">Civic Action</div>
+          <div class="word-toolbox">Toolbox</div>
+        </div>
+      </a>
+      <span class="coming">Coming Early 2027</span>
+    </div>
+    <div class="accent-rule"></div>
+    <h1>See it work.</h1>
+    <p class="hero-body">Below is a real Planet Detroit story and the real box the Toolbox built for it — the same box readers see at the end of the article. Nothing here is a mock-up, and nothing asks you to sign in.</p>
+  </div>
+</section>
+
+<!-- THE STORY AND ITS BOX -->
+<section class="product demo-main">
+  <div class="inner">
+    <div class="demo-cols">
+      <article class="demo-story">
+        <div class="eyebrow">The story</div>
+        <!-- The article: Nina picks the story (docs/spec-try-it-page.md §10.1
+             in the app repo). To change it, edit this block and the
+             data-box key on the frame below. -->
+        <h2 class="demo-story-h2">‘What environmental racism looks like’: Protest targets University of Michigan computing center</h2>
+        <p class="demo-byline">By Brian Allnutt · Planet Detroit · October 2, 2026</p>
+        <p class="section-body">A University of Michigan regent joined residents, labor unions and local officials at an October 1 protest against the university’s planned $1.25-billion computing center in Ypsilanti Township, held before a university town hall on the project. Neighbors said the university had not come to their doors to answer questions about power, water and noise.</p>
+        <p class="section-body">The Toolbox read the story and found the public bodies deciding on the project, the meetings coming up, the officials to contact and the organizations already working on it — then an editor checked every line before publishing.</p>
+        <p><a href="https://planetdetroit.org/2026/10/um-regent-joins-ypsilanti-data-center-protest/" class="demo-story-link" target="_blank" rel="noopener">Read the full story on planetdetroit.org →</a></p>
+
+        <div class="demo-legend">
+          <div class="eyebrow">What’s in the box</div>
+          <ul>
+            <li><strong>Why it matters</strong> and <strong>who’s deciding</strong> — two plain sentences.</li>
+            <li><strong>Upcoming meetings</strong> you can attend, with agendas and calendar links.</li>
+            <li><strong>Open comment periods</strong> and deadlines, while they are still open.</li>
+            <li><strong>Elected officials</strong> for the place the story is about, with email and phone.</li>
+            <li><strong>What you can do</strong> — concrete actions, and a tick to say you did one.</li>
+            <li><strong>Organizations to follow</strong> already working on the issue.</li>
+          </ul>
+          <p class="demo-note">Meetings drop out of the box once they have passed, so what you see is what is still ahead.</p>
+        </div>
+      </article>
+
+      <div class="demo-box">
+        <div class="eyebrow">The box, live</div>
+        <!-- The published box, served by the Toolbox from its box key: the
+             genuine article, kept current by the hosted page. Swap the key
+             to show a different story. -->
+        <iframe
+          class="demo-frame"
+          data-box="box_722a0d6c268b4b3bb2b76a6ea072946b"
+          src="https://app.civicactiontoolbox.org/box/box_722a0d6c268b4b3bb2b76a6ea072946b"
+          title="The civic action box for this story"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p class="demo-note">Opens on its own page too: <a href="https://app.civicactiontoolbox.org/box/box_722a0d6c268b4b3bb2b76a6ea072946b" class="demo-story-link" target="_blank" rel="noopener">app.civicactiontoolbox.org/box/…</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="who demo-close">
+  <div class="inner who-cols">
+    <div class="who-copy">
+      <div class="eyebrow eyebrow-on-cobalt">What happens next</div>
+      <h2 class="who-h2">Paste your own story here in March.</h2>
+      <p class="who-body">When the Toolbox opens to the public, this page will take any article and build its box in about a minute, with no account. Until then, newsrooms in the pilot are building boxes like the one above every week.</p>
+      <p class="who-body">Questions? <a href="mailto:hello@civicactiontoolbox.org" class="who-email">hello@civicactiontoolbox.org</a></p>
+    </div>
+    <div class="pilot-card">
+      <h3>Want in on the pilot?</h3>
+      <p>Tell us about your newsroom and we’ll get you early access when the Toolbox opens in early 2027.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-pill waitlist-cta" target="_blank" rel="noopener">Join the early access list</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner footer-row">
+    <img src="../assets/cat-icon-reverse-cream.svg" alt="Civic Action Toolbox" class="footer-icon">
+    <span class="footer-domain">civicactiontoolbox.org</span>
+  </div>
+</footer>
+
+</body>
+</html>

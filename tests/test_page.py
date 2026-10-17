@@ -117,6 +117,33 @@ parser.feed(html_src)
 unbalanced = {t: n for t, n in parser.counts.items() if n != 0}
 check("div/section/a/p/span tags balanced", not unbalanced, str(unbalanced))
 
+# ---- See it work (see-it-work/index.html, Oct 17 2026) ----
+# The home page offers "See it work" (its own GA event, not a waitlist
+# CTA); the demo page shows a real published box through the Toolbox's own
+# hosted page (an iframe by box key — never a copy), links the story, ends
+# in the early-access form, and never mentions pilot partners or prices.
+demo_src = (ROOT / "see-it-work" / "index.html").read_text()
+check("Home page has a See it work button to the demo page",
+      'href="see-it-work/"' in html_src and "see-it-cta" in html_src and "see_it_work_click" in html_src)
+frame = re.search(r'<iframe[^>]+>', demo_src)
+check("Demo page frames a published box by key", bool(frame)
+      and re.search(r'src="https://app\.civicactiontoolbox\.org/box/box_[a-z0-9]+"', frame.group(0)) is not None
+      and 'data-box="box_' in frame.group(0))
+check("Demo page links the story on planetdetroit.org",
+      'href="https://planetdetroit.org/' in demo_src and "demo-story-link" in demo_src)
+check("Demo page ends in the early-access form with its own GA event",
+      re.search(r'<a[^>]+href="' + re.escape(GFORM_URL) + r'"[^>]*waitlist-cta', demo_src) is not None
+      and "demo_waitlist_click" in demo_src)
+check("Demo page promises the March paste box and nothing more",
+      "Paste your own story here in March" in demo_src)
+# (The story's own dollar figure is fine; a price is "a month" or "per month".)
+check("Demo page names no pilot partner or price",
+      not re.search(r"Bridge Michigan|MinnPost|Sahan|per month|\$\d[\d,.]* (a|per) month", demo_src))
+demo_parser = TagBalance()
+demo_parser.feed(demo_src)
+demo_unbalanced = {t: n for t, n in demo_parser.counts.items() if n != 0}
+check("Demo page tags balanced", not demo_unbalanced, str(demo_unbalanced))
+
 print()
 if failures:
     print(f"{len(failures)} check(s) failed")

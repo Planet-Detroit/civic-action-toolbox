@@ -205,3 +205,23 @@ footer { background: #C42D18; padding-top: 36px; padding-bottom: 36px; }
 .footer-icon { height: 36px; width: auto; display: block; }
 
 .footer-domain { font-size: 15px; font-weight: 500; color: #FFD028; }
+
+/* ---- See it work (see-it-work/index.html, Oct 17 2026) ---- */
+.lockup-link { text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; }
+.demo-hero { padding-bottom: 64px; }
+.demo-main { padding-top: 72px; }
+.demo-cols { display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start; }
+.demo-story { flex: 1 1 380px; min-width: 0; }
+.demo-story-h2 { margin-top: 16px; font-family: "Baloo 2", cursive; font-weight: 800; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.1; color: #1B2FC4; }
+.demo-byline { margin-top: 10px; font-size: 14px; color: #7A6A5A; }
+.demo-story-link { font-weight: 700; color: #1B2FC4; }
+.demo-legend { margin-top: 36px; }
+.demo-legend ul { margin: 14px 0 0; padding-left: 20px; font-size: 16px; line-height: 1.55; color: #4A3B2E; }
+.demo-legend li + li { margin-top: 6px; }
+.demo-note { margin-top: 14px; font-size: 14px; line-height: 1.5; color: #7A6A5A; }
+.demo-box { flex: 1 1 420px; min-width: 0; }
+.demo-frame { display: block; width: 100%; height: min(78vh, 900px); margin-top: 16px; border: 0; border-radius: 20px; background: #FFFFFF; box-shadow: 0 10px 40px rgba(27, 47, 196, 0.12); }
+.demo-close { padding-top: 80px; padding-bottom: 80px; }
+.see-it-cta { background: transparent; color: #FFF3DC; border: 2px solid #FFF3DC; }
+.see-it-cta:hover { background: #FFF3DC; color: #1B2FC4; }
+@media (max-width: 640px) { .demo-frame { height: 70vh; } }

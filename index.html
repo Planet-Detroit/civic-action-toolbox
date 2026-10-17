@@ -32,6 +32,10 @@
         link_url: link.href
       });
     }
+    // Measure first (Oct 17 2026): the step before the waitlist.
+    if (link.classList.contains('see-it-cta')) {
+      gtag('event', 'see_it_work_click', { link_text: 'See it work', link_url: link.href });
+    }
   });
 </script>
 </head>
@@ -55,6 +59,7 @@
     <p class="hero-body">A free tool that puts who decides, when, and how to reach them inside your story — and counts every action readers take. We're opening a pilot group of newsrooms in early 2027.</p>
     <div class="cta-row">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5XGSfHNzg9tgDWIGP4QKfFAFhV_vvY-Gl3NdPk4IQWWqSvQ/viewform" class="btn-pill waitlist-cta" target="_blank" rel="noopener">Join the early access list</a>
+      <a href="see-it-work/" class="btn-pill see-it-cta">See it work</a>
       <span class="cta-note">Two minutes. No commitment.</span>
     </div>
   </div>
