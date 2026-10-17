@@ -33,6 +33,17 @@
       gtag('event', 'demo_story_click', { link_url: link.href });
     }
   });
+
+  // The box's own page tells us how tall it is (a message from the Toolbox
+  // app only), and the frame grows to fit, so nobody scrolls inside a
+  // scroll (Nina, Oct 17 2026). Anything from another origin is ignored.
+  window.addEventListener('message', function(e) {
+    if (e.origin !== 'https://app.civicactiontoolbox.org') return;
+    var d = e.data || {};
+    if (d.type !== 'cat-box-height' || typeof d.height !== 'number') return;
+    var frame = document.querySelector('.demo-frame');
+    if (frame && d.height > 300 && d.height < 20000) frame.style.height = Math.ceil(d.height + 24) + 'px';
+  });
 </script>
 </head>
 <body>
@@ -95,7 +106,6 @@
           data-box="box_722a0d6c268b4b3bb2b76a6ea072946b"
           src="https://app.civicactiontoolbox.org/box/box_722a0d6c268b4b3bb2b76a6ea072946b"
           title="The civic action box for this story"
-          loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
         <p class="demo-note">Opens on its own page too: <a href="https://app.civicactiontoolbox.org/box/box_722a0d6c268b4b3bb2b76a6ea072946b" class="demo-story-link" target="_blank" rel="noopener">app.civicactiontoolbox.org/box/…</a></p>
       </div>

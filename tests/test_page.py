@@ -139,6 +139,11 @@ check("Demo page promises the March paste box and nothing more",
 # (The story's own dollar figure is fine; a price is "a month" or "per month".)
 check("Demo page names no pilot partner or price",
       not re.search(r"Bridge Michigan|MinnPost|Sahan|per month|\$\d[\d,.]* (a|per) month", demo_src))
+check("Demo frame grows to the box's height from the app's message only",
+      "addEventListener('message'" in demo_src
+      and "e.origin !== 'https://app.civicactiontoolbox.org'" in demo_src
+      and "cat-box-height" in demo_src
+      and 'loading="lazy"' not in demo_src)
 demo_parser = TagBalance()
 demo_parser.feed(demo_src)
 demo_unbalanced = {t: n for t, n in demo_parser.counts.items() if n != 0}
