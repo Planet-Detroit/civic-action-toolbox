@@ -126,9 +126,11 @@ demo_src = (ROOT / "see-it-work" / "index.html").read_text()
 check("Home page has a See it work button to the demo page",
       'href="see-it-work/"' in html_src and "see-it-cta" in html_src and "see_it_work_click" in html_src)
 frame = re.search(r'<iframe[^>]+>', demo_src)
-check("Demo page frames a published box by key", bool(frame)
-      and re.search(r'src="https://app\.civicactiontoolbox\.org/box/box_[a-z0-9]+"', frame.group(0)) is not None
-      and 'data-box="box_' in frame.group(0))
+# Oct 17 2026: the frame shows the newsroom's freshest live box (the app
+# chooses on every load), never one box by key — so this page cannot go stale.
+check("Demo page frames the showcase box, not one box by key", bool(frame)
+      and 'src="https://app.civicactiontoolbox.org/box/showcase/planet-detroit"' in frame.group(0)
+      and 'box_' not in frame.group(0))
 check("Demo page links the story on planetdetroit.org",
       'href="https://planetdetroit.org/' in demo_src and "demo-story-link" in demo_src)
 check("Demo page ends in the early-access form with its own GA event",

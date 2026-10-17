@@ -12,7 +12,7 @@ Splash site for **civicactiontoolbox.org**: five full-bleed sections (hero, prod
 
 ## See it work (`see-it-work/`)
 
-Added Oct 17, 2026 (the "try it right away" decision): one real Planet Detroit story and the real box the Toolbox built for it, shown live through the app's hosted box page in an iframe — nothing copied, no sign-in, no AI call. The home page's "See it work" button logs `see_it_work_click`; the demo page's form button logs `demo_waitlist_click`; the story link logs `demo_story_click`. To change the story, edit the article block and the `data-box` key / `src` on the iframe in `see-it-work/index.html`. In March the page gains "Paste your own article" (built in the app, not here).
+Added Oct 17, 2026 (the "try it right away" decision): a real Planet Detroit story and the real box the Toolbox built for it, shown live through the app's hosted box page in an iframe — nothing copied, no sign-in, no AI call. The frame points at `app.civicactiontoolbox.org/box/showcase/planet-detroit`, which picks the freshest Planet Detroit box with the most still ahead of it on every load, so nobody keeps this page fresh. The home page's "See it work" button logs `see_it_work_click`; the demo page's form button logs `demo_waitlist_click`; the story link logs `demo_story_click`. In March the page gains "Paste your own article" (built in the app, not here).
 
 ## Signup form
 
